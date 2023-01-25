@@ -19,22 +19,25 @@
                     <label for="file-holder">Upload     
                         Picture:</label><br>
                     <input  type="file" 
+                            id="image-input"
                             name="file-holder" 
-                            accept="image/*"><br>
+                            accept="image/*"
+                            onchange="previewImage()"><br>
                     <label  for="photo-caption">
                         Caption it:</label><br>
                     <textarea   
                             name="photo-caption"        
                             id="photo-caption" 
                             cols="30" 
-                            rows="10">
+                            rows="3">
                     </textarea>
                 </div>
-                <div id="purview">
-                    <div>hello</div>
+                <div id="preview">
+                    <img src="" id="image-preview">
                 </div>
             </div>
 
           </main>
+          <script src="index.js"></script>
     </body>
 </html>
