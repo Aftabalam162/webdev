@@ -12,11 +12,31 @@
 #upload-photo {
     display: flex;
     justify-content: center;
+    border: 1px solid black;
+}
+
+@media screen and (max-width: 720px) {
+    #upload-photo {
+        flex-direction: column;
+        align-items: center;
+        width: inherit;
+    }
+
+    #purview {
+        order: 0;
+    }
+
+    #upload-details {
+        order: 1;
+    }
 }
 
 #purview {
-    width: 300px;
+    width: 10em;
     height: 300px;
+    margin: 20px;
+    padding: 10px;
+    border: 1px solid black;
 }
 
 #upload-details {
