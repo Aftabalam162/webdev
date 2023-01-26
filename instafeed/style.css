@@ -25,6 +25,7 @@
 
     #preview {
         order: 0;
+        visibility: collapse;
     }
 
     #upload-details {
