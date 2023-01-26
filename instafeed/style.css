@@ -38,6 +38,8 @@
     padding: 10px;
     border: 1px solid black;
     object-fit: contain;
+    text-align: center;
+    visibility: collapse;
 }
 
 #preview>img {
