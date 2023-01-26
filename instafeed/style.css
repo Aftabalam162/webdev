@@ -1,5 +1,6 @@
 * {
     box-sizing: border-box;
+    border-radius: 3px;
 }
 
 .profile-feed {
@@ -38,6 +39,9 @@
     padding: 10px;
     border: 1px solid black;
     object-fit: contain;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     text-align: center;
     visibility: collapse;
 }
@@ -51,7 +55,8 @@
 #upload-details {
     display: flex;
     flex-direction: column;
-    align-items: center;
+    justify-content: center;
+    align-content: center;
     padding: 10px;
     margin: 20px;
 }
@@ -60,11 +65,67 @@
     margin: 3px 10px;
 }
 
+#post-btn {
+    align-self: flex-start;
+    margin: 20px;
+    margin-left: 10px;
+    height: 30px;
+    width: 100px;
+    background-color: rgb(106, 155, 220);
+    color: white;
+    font-size: 18px;
+    border: 0;
+    border-radius: 3px;
+    box-shadow: inset -5px -5px 15px black, inset 5px 5px 15px blue;
+
+}
+
+#post-btn:hover {
+    transform: scale(0.98);
+}
+
+#post-btn:active {
+    transform: scale(0.98);
+}
+
+.postNode {
+    width: 300px;
+    height: fit-content;
+    margin: 20px;
+    padding: 10px;
+    border: 1px solid black;
+    text-align: center;
+    display: block;
+
+}
+
+.postNode>h2 {
+    margin: 10px;
+    text-align: left;
+    text-decoration: underline;
+}
+
+.postNode>img {
+    max-width: 100%;
+    max-height: 200px;
+    object-fit: contain;
+}
+
+.postNode>p {
+    padding: 10px;
+    padding-right: 15px;
+    max-height: 100px;
+    overflow-y: scroll;
+    border: 1px solid black;
+    margin: 10px;
+    margin-bottom: 0;
+}
+
 label {
     width: 100%;
     text-align: left;
 }
 
 #photo-caption {
-    text-align: rigth;
+    text-align: left;
 }
