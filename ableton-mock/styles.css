@@ -1,0 +1,64 @@
+.main {
+  margin-right: 123px;
+  margin-left: 123px; }
+  .main .page {
+    padding-left: 123px;
+    padding-right: 123px; }
+
+nav {
+  display: flex;
+  width: inherit;
+  flex-direction: column; }
+  nav .main-nav, nav .main-nav_sites {
+    width: inherit;
+    height: 70px;
+    margin: 0;
+    vertical-align: top;
+    font-weight: bold; }
+    nav .main-nav li, nav .main-nav_sites li {
+      display: inline-block;
+      margin: 10px; }
+  nav .main-nav {
+    font-size: larger; }
+    nav .main-nav div {
+      float: right; }
+  nav .main-nav_sites {
+    font-size: medium; }
+
+.main-footer_row {
+  height: fit-content;
+  margin-top: 0;
+  padding-bottom: 20px; }
+  .main-footer_row.footer-last_row {
+    height: 100px;
+    vertical-align: top;
+    padding-top: 10px; }
+  .main-footer_row h1 {
+    font-size: 50px; }
+
+.main-footer_col {
+  display: inline-block;
+  width: 33%;
+  height: fit-content;
+  vertical-align: top; }
+  .main-footer_col ul {
+    padding-left: 0;
+    margin: 0; }
+  .main-footer_col li {
+    margin-bottom: 10px;
+    list-style-type: none; }
+  .main-footer_col h3 {
+    font-weight: bold;
+    margin-top: 0; }
+
+.footer-last_row li {
+  display: inline-block; }
+.footer-last_row div {
+  float: right; }
+
+.main-footer_list li::after {
+  content: ' >';
+  font-size: 13px;
+  vertical-align: middle; }
+
+/*# sourceMappingURL=styles.css.map */
