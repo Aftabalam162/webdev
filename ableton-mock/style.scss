@@ -1,8 +1,17 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #f3f3f3;
+}
 
 .main {
     margin-right: 123px;
     margin-left: 123px;
+
     .page {
+        background-color: white;
         padding-left: 123px;
         padding-right: 123px;
     }
@@ -14,8 +23,9 @@ nav {
     display: flex;
     width: inherit;
     flex-direction: column;
+    background-color: white;
 
-    .main-nav, .main-nav_sites {
+    .main-nav {
         width: inherit;
         height: 70px;
         margin: 0;
@@ -34,11 +44,26 @@ nav {
         div {
             float: right;
         }
-
+ 
     }
 
+    
+}
+
+.page {
+
     .main-nav_sites {
+        padding:0;
+        width: inherit;
+        height: 70px;
+        margin: 0;
+        vertical-align: top;
+        font-weight: bold;
         font-size: medium;
+        li {
+            display: inline-block;
+            margin: 10px;
+        }
     }
 }
 
@@ -46,15 +71,27 @@ nav {
     height: fit-content;
     margin-top: 0;
     padding-bottom: 20px;
+    
+
 
     &.footer-last_row {
         height: 100px;
-        vertical-align: top;
         padding-top: 10px;
+        padding-left: 0;
+        
+        li {
+            font-size: 15px;
+            margin-right: 10px;
+        }
     }
 
     h1 {
         font-size: 50px;
+    }
+
+    h3 {
+        font-weight: bold;
+        margin-top: 0;
     }
 }
 
@@ -69,20 +106,67 @@ nav {
         margin: 0;
     }
 
-    li {
+    ul li {
         margin-bottom: 10px;
         list-style-type: none;
-    }
 
-    h3 {
-        font-weight: bold;
-        margin-top: 0;
-    }
+        .email_signup_box {
+            display: inline-block;
+            height: fit-content;
+            margin: 0;
+            padding: 0;
+            // border: px solid black;
+            input[type='text'] {
+                margin: 0;
+                padding: 10px;
+                background-color: #eeeeee;
+                font-size: 15px;
+                font-weight: bold;
+                height: 35px;
+                width: 300px;
+                border: 0;
+            }
+
+            input[type='button'] {
+                color:#ffffff;
+                font-size: 15px;
+                font-weight: bold;
+                height: 35px;
+                width: 90px;
+                border:0;
+                margin: 0;
+                position: relative;
+                right:5px;
+                background-color: #0000ff;
+            }
+        }
+
+        #main-footer_col_lang-preference {
+            height: fit-content;
+
+            select {
+                height: 30px;
+                background-color: #eeeeee;
+                font-weight:bold;
+                border:0;
+            }
+
+            select[name='language'] {
+                width: 100px;
+            }
+
+            select[name='country'] {
+                width: 200px;
+            }
+
+        }
+
+}
 }
 
 .footer-last_row {
 
-    li {
+    ul li {
         display: inline-block;
     }
 
