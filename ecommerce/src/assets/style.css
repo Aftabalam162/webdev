@@ -1,0 +1,27 @@
+.navbar {
+  padding: 1rem; }
+
+.navbar-brand::before {
+  content: url("../../vite.svg");
+  vertical-align: middle; }
+
+.carousel-indicators [data-bs-target] {
+  height: 10px;
+  width: 10px;
+  border-radius: 50%; }
+
+@media screen and (mid-width: 426px) {
+  .carousel-item #banner1 {
+    content: url("banner1-desk.png"); }
+  .carousel-item #banner2 {
+    content: url("banner2-desk.png"); }
+  .carousel-item #banner3 {
+    content: url("banner3-desk.png"); } }
+.carousel-inner {
+  height: 10rem; }
+
+@media screen and (min-width: 425px) {
+  .carousel-inner {
+    height: 20rem; } }
+
+/*# sourceMappingURL=style.css.map */
