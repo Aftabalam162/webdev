@@ -2,20 +2,20 @@ export function Carousel() {
     return (
         <>
         <div id="carouselExampleIndicators" className="carousel slide">
-  <div className="carousel-indicators" data-bs-interval="5000">
+  <div className="carousel-indicators">
     <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" className="active carousel-btn" aria-current="true" aria-label="Slide 1"></button>
     <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2" className="carousel-btn"></button>
     <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3" className="carousel-btn"></button>
   </div>
   <div className="carousel-inner">
-    <div className="carousel-item active">
-      <img id="banner1" src="banner1.png" className="d-block w-100" />
+    <div className="carousel-item active" id="banner1">
+      <img  src="banner1.png" className="d-block w-100" />
     </div>
-    <div className="carousel-item">
-      <img id="banner2" src="banner2.png" className="d-block w-100" />
+    <div className="carousel-item" id="banner2">
+      <img  src="banner2.png" className="d-block w-100" />
     </div>
-    <div className="carousel-item">
-      <img id="banner3" src="banner3.png" className="d-block w-100" />
+    <div className="carousel-item" id="banner3">
+      <img  src="banner3.png" className="d-block w-100" />
     </div>
   </div>
   <button className="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">

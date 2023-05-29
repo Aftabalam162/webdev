@@ -16,23 +16,23 @@
     border-radius: 50%;
 }
 
-@media screen and (mid-width:426px) {
+@media screen and (min-width:426px) {
     
-.carousel-item {
+
     // height: 500px;
     // width: 100%;
 
-    #banner1 {
-        content: url('banner1-desk.png');
+    #banner1 img{
+        content: url('../../public/banner1-desk.png');
     }
 
-    #banner2 {
-        content: url('banner2-desk.png')
+    #banner2 img{
+        content: url('../../public/banner2-desk.png')
     }
-    #banner3 {
-        content: url('banner3-desk.png')
+    #banner3 img{
+        content: url('../../public/banner3-desk.png')
     }
-}
+
 }
 
 .carousel-inner {
@@ -42,5 +42,66 @@
 @media screen and (min-width: 425px) {
     .carousel-inner {
         height: 20rem;
+    }
+}
+
+.container {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+    .card {
+        width: 20rem;
+        height: fit-content;
+        margin: 1rem;
+
+        img {
+            width:100%;
+            object-fit: contain;
+            padding-bottom: 5px;
+        }
+
+        .card-title {
+            text-align: center;
+            margin: 5px 0;
+        }
+
+        .btn {
+            width: 100%;
+            border: 1px solid blue;
+            background-color: transparent;
+            color: blue;
+        }
+    }
+}
+
+.footer {
+
+    width: 100%;
+    height: fit-content;
+    background-color: black;
+
+    .footer-links_container {
+        display: flex;
+        justify-content: center;
+        margin-bottom: 0;
+    }
+
+    .footer-links_list {
+        list-style-type: none;
+        color:white;
+        margin: 0; 
+        padding-left: 0; 
+
+        li {
+            display: inline-block;
+            margin: 1rem;
+        }
+    }
+
+    h5 {
+        text-align: center;
+        padding-bottom: 1rem;
+        margin-bottom: 0;
+        color:white;
     }
 }

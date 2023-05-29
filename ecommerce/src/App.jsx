@@ -1,15 +1,15 @@
 import { useState } from 'react'
 import { Navbar } from './nav'
-import { Carousel } from './carousel.jsx'
-
+import { Main } from './body'
+import { Footer } from './footer'
 
 function App() {
 
   return (
     <>
-
       <Navbar />
-      <Carousel/>
+      <Main />
+      <Footer />
     </>
   )
 }
