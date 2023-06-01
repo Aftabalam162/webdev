@@ -1,3 +1,7 @@
+#root {
+  display: flex;
+  flex-direction: column; }
+
 .navbar {
   padding: 1rem; }
 
@@ -49,7 +53,8 @@
 .footer {
   width: 100%;
   height: fit-content;
-  background-color: black; }
+  background-color: black;
+  bottom: 0; }
   .footer .footer-links_container {
     display: flex;
     justify-content: center;

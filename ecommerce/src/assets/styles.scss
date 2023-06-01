@@ -1,3 +1,12 @@
+#root {
+    display: flex;
+    flex-direction: column;
+
+    .main {
+        // flex-grow: 2;
+    }
+}
+
 .navbar {
     padding: 1rem;
 }
@@ -75,10 +84,10 @@
 }
 
 .footer {
-
     width: 100%;
     height: fit-content;
     background-color: black;
+    bottom: 0;
 
     .footer-links_container {
         display: flex;
