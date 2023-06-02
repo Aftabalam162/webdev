@@ -1,10 +1,40 @@
-.body {
-  height: 100vh;
+#root {
   position: relative; }
 
 .navbar {
   padding: 1rem; }
+  .navbar .container-fluid {
+    justify-content: center; }
+  .navbar .navbar-nav {
+    margin-right: 0; }
+  .navbar .navbar-collapse {
+    flex-grow: 0; }
+  .navbar .form-control {
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0; }
+  .navbar .btn {
+    color: white;
+    background-color: green;
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0; }
+  .navbar .d-flex {
+    margin-right: 0.5rem; }
+  .navbar .nav-item .login-btn {
+    margin: auto 1rem;
+    background-color: white;
+    padding-right: 1.5rem;
+    padding-left: 1.5rem;
+    border: 1px solid lightgrey;
+    border-radius: 5px; }
+  .navbar .nav-item .cart-btn {
+    padding-right: 1rem;
+    margin: auto 1rem; }
+    .navbar .nav-item .cart-btn .nav-link {
+      padding-right: 1rem; }
 
+@media screen and (max-width: 425px) {
+  .navbar .container-fluid {
+    justify-content: space-between; } }
 .navbar-brand::before {
   content: url("../../vite.svg");
   vertical-align: middle; }
@@ -53,7 +83,6 @@
 .footer {
   width: 100%;
   background-color: black;
-  position: absolute;
   bottom: 0; }
   .footer .footer-links_container {
     display: flex;

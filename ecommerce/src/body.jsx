@@ -12,6 +12,7 @@ export function Main() {
               <Products />
               <Products />
               <Products />
+              
             </div>
         </div>
         </>

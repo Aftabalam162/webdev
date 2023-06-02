@@ -1,10 +1,62 @@
-.body {
-    height: 100vh;
+#root {
     position: relative;
 }
 
 .navbar {
     padding: 1rem;
+
+    .container-fluid {
+        justify-content: center;
+    }
+
+    .navbar-nav {
+        margin-right:0;
+    }
+
+    .navbar-collapse {
+        flex-grow: 0;
+    }
+    
+    .form-control {
+     
+        border-top-right-radius: 0;
+        border-bottom-right-radius: 0;
+    }
+
+    .btn {
+        color:white;
+        background-color: green;
+        border-top-left-radius: 0;
+        border-bottom-left-radius: 0;
+    }
+
+    .d-flex {
+        margin-right:0.5rem;
+    }
+
+    .nav-item {
+        .login-btn {
+            margin: auto 1rem;
+            background-color:white;
+            padding-right: 1.5rem;
+            padding-left: 1.5rem;
+            border: 1px solid lightgrey;
+            border-radius: 5px;
+        }
+
+        .cart-btn{
+            padding-right: 1rem;
+            margin: auto 1rem;
+
+            .nav-link {
+                padding-right: 1rem;
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 425px) {
+    .navbar { .container-fluid { justify-content: space-between;}}
 }
 
 .navbar-brand {
@@ -81,7 +133,6 @@
 .footer {
     width: 100%;
     background-color: black;
-    position:absolute;
     bottom: 0;
 
     .footer-links_container {
