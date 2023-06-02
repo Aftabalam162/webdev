@@ -10,6 +10,8 @@ export function Main() {
               <Products />
               <Products />
               <Products />
+              <Products />
+              <Products />
             </div>
         </div>
         </>

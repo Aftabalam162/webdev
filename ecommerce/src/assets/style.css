@@ -1,6 +1,6 @@
-#root {
-  display: flex;
-  flex-direction: column; }
+.body {
+  height: 100vh;
+  position: relative; }
 
 .navbar {
   padding: 1rem; }
@@ -9,6 +9,9 @@
   content: url("../../vite.svg");
   vertical-align: middle; }
 
+.carousel-control-prev, .carousel-control-next {
+  height: inherit; }
+
 .carousel-indicators [data-bs-target] {
   height: 10px;
   width: 10px;
@@ -16,19 +19,16 @@
 
 @media screen and (min-width: 426px) {
   #banner1 img {
-    content: url("../../public/banner1-desk.png"); }
+    content: url("/banner1-desk.png"); }
 
   #banner2 img {
-    content: url("../../public/banner2-desk.png"); }
+    content: url("/banner2-desk.png"); }
 
   #banner3 img {
-    content: url("../../public/banner3-desk.png"); } }
+    content: url("/banner3-desk.png"); } }
 .carousel-inner {
-  height: 10rem; }
+  height: fit-content; }
 
-@media screen and (min-width: 425px) {
-  .carousel-inner {
-    height: 20rem; } }
 .container {
   display: flex;
   flex-flow: row wrap;
@@ -52,8 +52,8 @@
 
 .footer {
   width: 100%;
-  height: fit-content;
   background-color: black;
+  position: absolute;
   bottom: 0; }
   .footer .footer-links_container {
     display: flex;
