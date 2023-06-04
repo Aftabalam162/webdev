@@ -1,18 +1,17 @@
 import { useState } from 'react'
 import { Navbar } from './nav'
-import { Main } from './body'
+import { Outlet } from 'react-router-dom'
 import { Footer } from './footer'
 
-function App() {
+export default function App() {
 
   return (
     <>
       <Navbar />
-      <Main />
+      {/* <Main /> */}
+      < Outlet />
       <Footer />
     </>
   )
 }
 
-
-export default App
