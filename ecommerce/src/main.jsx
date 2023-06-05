@@ -4,6 +4,7 @@ import { createBrowserRouter, RouterProvider} from 'react-router-dom'
 import ErrorPage from './errorPage.jsx'
 import App from './App.jsx'
 import { Main } from './body'
+import Product from './product.jsx'
 
 const router = createBrowserRouter(
   [{
@@ -17,7 +18,7 @@ const router = createBrowserRouter(
       },
       {
         path: "shirt",
-        element: <h1>This is a the best shirt in town</h1>
+        element: <Product />
       }
     ]
   }
