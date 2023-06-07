@@ -105,11 +105,15 @@
 .product-container {
   display: grid;
   width: inherit;
-  margin: 1rem; }
+  margin: 1rem;
+  grid-template-columns: 100%;
+  grid-template-rows: auto minmax(fit-content, 100%);
+  grid-template-areas: "showcase" "product"; }
   .product-container .product-showcase {
     display: flex;
     flex-direction: column;
-    width: inherit; }
+    width: inherit;
+    grid-area: showcase; }
   .product-container .product-images {
     display: flex;
     gap: 1rem;
@@ -149,7 +153,8 @@
       height: 15rem; } }
 .product-box {
   width: inherit;
-  margin-top: 2rem; }
+  margin-top: 2rem;
+  grid-area: product; }
   .product-box .product-details {
     width: inherit; }
   .product-box .purchase-details {

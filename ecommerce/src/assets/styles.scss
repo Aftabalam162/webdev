@@ -167,12 +167,16 @@
     display: grid;
     width: inherit;
     margin: 1rem;
-
+    grid-template-columns: 100%;
+    grid-template-rows: auto minmax(fit-content, 100%);
+    grid-template-areas: "showcase"
+    "product";
 
     .product-showcase {
         display: flex;
         flex-direction: column;
         width: inherit;
+        grid-area: showcase;
     }
 
 
@@ -234,6 +238,7 @@
 .product-box {
     width: inherit;
     margin-top: 2rem;
+    grid-area: product;
 
     .product-details {
         width: inherit;
