@@ -43,30 +43,32 @@ export default function Product() {
                         </div>
 
 
-                        <div className="product-type">
-                            
+                        <div className="product-choice">
+                            <div className="product-type">
 
-                            <div className="product-size">
-                                <label htmlFor="type"><b>Type:</b> </label><br />
-                                <button name="type" type="radio" radioGroup="type">S</button>
-                                <button name="type" type="radio" radioGroup="type">M</button>
-                                <button name="type" type="radio" radioGroup="type">L</button>
-                                <button name="type" type="radio" radioGroup="type">XL</button>
+
+                                <div className="product-size">
+                                    <label htmlFor="type"><b>Type:</b> </label><br />
+                                    <button name="type" type="radio" radioGroup="type">S</button>
+                                    <button name="type" type="radio" radioGroup="type">M</button>
+                                    <button name="type" type="radio" radioGroup="type">L</button>
+                                    <button name="type" type="radio" radioGroup="type">XL</button>
+                                </div>
+
+                                <div className="quantity">
+                                    <label htmlFor="quantity">Quantity: </label>
+                                    <select name="quantity">
+                                        <option value="1">1</option>
+                                        <option value="2">2</option>
+                                        <option value="3">3</option>
+                                    </select>
+                                </div>
                             </div>
 
-                            <div className="quantity">
-                                <label htmlFor="quantity">Quantity: </label>
-                                <select name="quantity">
-                                    <option value="1">1</option>
-                                    <option value="2">2</option>
-                                    <option value="3">3</option>
-                                </select>
+                            <div className="purchase-btn">
+                                <button className="buy-btn details_btn_mobile"> Buy Now </button>
+                                <button className="add-cart-btn details_btn_mobile"> Add to cart </button>
                             </div>
-                        </div>
-
-                        <div className="purchase-btn">
-                            <button className="buy-btn"> Buy Now </button>
-                            <button className="add-cart-btn"> Add to cart </button>
                         </div>
                     </div>
                 </div>
