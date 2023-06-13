@@ -1,6 +1,15 @@
+import { useState } from "react";
 
 export default function Product() {
 
+
+    const [selectedButton, setSelectedButton] = useState(null);
+    
+    function handleButtonClick(button) {
+      setSelectedButton(button);
+    }
+      
+  
     return (
         <>
             <div className="product-container">
@@ -48,11 +57,11 @@ export default function Product() {
 
 
                                 <div className="product-size">
-                                    <label htmlFor="type"><b>Type:</b> </label><br />
-                                    <button name="type" type="radio" radioGroup="type">S</button>
-                                    <button name="type" type="radio" radioGroup="type">M</button>
-                                    <button name="type" type="radio" radioGroup="type">L</button>
-                                    <button name="type" type="radio" radioGroup="type">XL</button>
+                                    <label htmlFor="type"><b>Type:</b> <b>{selectedButton}</b> </label><br />
+                                    <button className={(selectedButton == 'S')? "active": ""} onClick={() => { handleButtonClick('S')}} type="radio" radioGroup="">S</button>
+                                    <button className={(selectedButton == 'M')? "active": ""} onClick={() => { handleButtonClick('M')}} type="radio" radioGroup="type">M</button>
+                                    <button className={(selectedButton == 'L')? "active": ""} onClick={() => { handleButtonClick('L')}} type="radio" radioGroup="type">L</button>
+                                    <button className={(selectedButton == 'XL')? "active": ""} onClick={() => { handleButtonClick('XL')}} type="radio" radioGroup="type">XL</button>
                                 </div>
 
                                 <div className="quantity">
@@ -66,8 +75,8 @@ export default function Product() {
                             </div>
 
                             <div className="purchase-btn">
-                                <button className="buy-btn details_btn_mobile"> Buy Now </button>
-                                <button className="add-cart-btn details_btn_mobile"> Add to cart </button>
+                                <button className="buy-btn details_btn"> Buy Now </button>
+                                <button className="add-cart-btn details_btn"> Add to cart </button>
                             </div>
                         </div>
                     </div>
