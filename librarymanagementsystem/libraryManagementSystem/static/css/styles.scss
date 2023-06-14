@@ -1,0 +1,53 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    width: 100vw;
+}
+
+
+.navbar {
+
+    .container-fluid {
+        width: 100%;
+
+        .container-fluid {
+            width: fit-content;
+            position: relative;
+            flex-wrap: nowrap;
+        }
+    }
+}
+
+
+@media screen and (min-width: 426px) {
+
+    .navbar {
+
+        .container-fluid {
+            width: 100%;
+            flex-wrap: nowrap;
+    
+            .container-fluid {
+                width: fit-content;
+                position: relative;
+                
+            }
+    
+            .logout {
+                position: absolute;
+                right: 1rem;
+                border: 1px solid black;
+                border-radius: 5px;
+            }
+        }
+    }    
+}
+
+.main {
+
+    width: 100vw;
+    word-wrap: break-word;
+    padding: 1rem;
+}

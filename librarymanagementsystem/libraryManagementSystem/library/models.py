@@ -1,12 +1,6 @@
 from django.db import models
 
-# For post-save actions
-from django.db.models.signals import post_save
-from django.dispatch import receiver
-
 # Create your models here.
-
-
 
 class Librarian(models.Model):
     name = models.CharField(max_length=255)
@@ -23,33 +17,73 @@ class Book(models.Model):
     num_of_copies = models.IntegerField()
 
 class Member(models.Model):
-    member_id = models.IntegerField(primary_key=True)
+    MEMBERSHIP_STATUS_CHOICES = [
+        ('Active', 'Active'),
+        ('Inactive', 'Inactive'),
+    ]
+
+    member_id = models.AutoField(primary_key=True, default=0)
     name = models.CharField(max_length=255)
     phone = models.BigIntegerField()
-    membership_status = models.CharField(max_length=10)
-    books_issued = models.CharField(max_length=255)
-    fine_amount = models.IntegerField()
+    membership_status = models.CharField(max_length=10, choices=MEMBERSHIP_STATUS_CHOICES)
+    books_issued = models.CharField(max_length=255, blank=True)
+    fine_amount = models.IntegerField(blank=True, default=0, null=True)
 
 class Transaction(models.Model):
+    transaction_id = models.AutoField(primary_key=True, default=0)
     isbn = models.ForeignKey(Book, on_delete=models.CASCADE)
     memberId = models.ForeignKey(Member, on_delete=models.CASCADE)
     issuedDate = models.DateField()
     dueDate = models.DateField()
 
-@receiver(post_save, sender=Transaction)
-def update_books_issued(sender, instance, **kwargs):
-    member = instance.memberId
-    book = instance.isbn.title
-    if book not in member.books_issued:
-        if member.books_issued:
-            member.books_issued += ', '
-        member.books_issued += book
-        member.save()
+    def save(self, *args, **kwargs):
+        # Call the parent's save() method
+        super().save(*args, **kwargs)
+
+        # Update the member's books_issued field
+        member = self.memberId
+        book = self.isbn
+
+        if book.title not in member.books_issued:
+            if member.books_issued:
+                member.books_issued += ', '
+            member.books_issued += book
+            member.save()
+
+            # decreasing the number of copies by one
+            book.num_of_copies -= 1
+            book.save()
+
+# @receiver(post_save, sender=Transaction)
+# def update_books_issued(sender, instance, **kwargs):
+#     member = instance.memberId
+#     book = instance.isbn.title
+#     if book not in member.books_issued:
+#         if member.books_issued:
+#             member.books_issued += ', '
+#         member.books_issued += book
+#         member.save()
 
 
 class BookIssue(models.Model):
+    bookreturn_id = models.AutoField(primary_key=True, default=0)
     isbn = models.ForeignKey(Book, on_delete=models.CASCADE)
     member_id = models.ForeignKey(Member, on_delete=models.CASCADE)
     returned_date = models.DateField()
     comments = models.CharField(max_length=255)
+    fine_charged = models.DecimalField(max_digits=10, decimal_places=2, default=0.00, null=True)
+
+    def save(self, *args, **krwargs):
+        
+        super().save()
+
+        member = self.member_id
+        bookReturnEntry = self
+
+        if bookReturnEntry.fine_charged:
+            member.fine_amount += bookReturnEntry.fine_charged
+            member.save()
+        
+        
+        
 
