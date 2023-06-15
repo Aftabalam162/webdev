@@ -1,8 +1,12 @@
+:root {
+  --bs-toast-bg: rgb(255, 226, 226); }
+
 * {
   box-sizing: border-box; }
 
 body {
-  width: 100vw; }
+  width: 100vw;
+  position: relative; }
 
 .navbar .container-fluid {
   width: 100%; }
@@ -27,5 +31,8 @@ body {
   width: 100vw;
   word-wrap: break-word;
   padding: 1rem; }
+  .main .toast-bg-color {
+    position: absolute;
+    background-color: #ffe2e2 !important; }
 
 /*# sourceMappingURL=style.css.map */

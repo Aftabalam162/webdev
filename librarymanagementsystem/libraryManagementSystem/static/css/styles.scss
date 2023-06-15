@@ -1,9 +1,14 @@
+:root {
+    --bs-toast-bg: rgb(255, 226, 226);
+}
+
 * {
     box-sizing: border-box;
 }
 
 body {
     width: 100vw;
+    position: relative;
 }
 
 
@@ -50,4 +55,13 @@ body {
     width: 100vw;
     word-wrap: break-word;
     padding: 1rem;
+
+    .toast {
+        
+    }
+
+    .toast-bg-color {
+    position: absolute;
+    background-color: rgb(255, 226, 226)!important;
+    }
 }

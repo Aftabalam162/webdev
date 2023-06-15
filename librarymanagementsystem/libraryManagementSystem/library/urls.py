@@ -1,6 +1,6 @@
 from django.urls import path
 from .views.views import Book, Member, BookIssue, Transaction
-from .views.customViews import Success, UpdateBook, UpdateBookIssue, UpdateMember, UpdateTransaction, RemoveBook, RemoveMember, IssueBook, ListMember
+from .views.customViews import Success, UpdateBook, UpdateBookIssue, UpdateMember, UpdateTransaction, RemoveBook, RemoveMember, IssueBook, ListMember, ListBook
 
 
 urlpatterns = [
@@ -18,4 +18,5 @@ urlpatterns = [
     path("removemember/", RemoveMember.as_view(), name="removeMember"),
     path("issuebook/", IssueBook.as_view(), name="issueBook"),
     path("listmember/", ListMember.as_view(), name="listMember"),
+    path("catalogue/", ListBook.as_view(), name="listBooks")
 ]

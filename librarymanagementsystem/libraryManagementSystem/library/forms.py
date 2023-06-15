@@ -15,7 +15,7 @@ class BookForm(forms.ModelForm):
 class MemberForm(forms.ModelForm):
     class Meta:
         model = Member
-        fields = ['name', 'phone', 'membership_status', 'books_issued', 'fine_amount']
+        fields = ['member_id','name', 'phone', 'membership_status', 'books_issued', 'fine_amount']
 
 class TransactionForm(forms.ModelForm):
     class Meta:
@@ -37,9 +37,9 @@ class BookIssueForm(forms.ModelForm):
 class RemoveBookForm(forms.ModelForm):
     class Meta:
         model = Book
-        fields = ['title']
+        fields = ['isbn']
 
 class RemoveMemberForm(forms.ModelForm):
     class Meta:
-        model = Book
-        fields = ['title']
+        model = Member
+        fields = ['member_id']

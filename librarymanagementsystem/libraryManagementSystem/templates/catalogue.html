@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+
+<table class="table table-striped table-hover">
+   <tr><thead>
+      <td>Title</td>
+      <td>Author</td>
+      <td>Publisher</td>
+      <td>ISBN</td>
+      <td>Copies</td>
+   </thead></tr>
+{% for book in books %}
+   <tr>
+      <td>{{book.title}}</td>
+      <td>{{book.author}}</td>
+      <td>{{book.publisher}}</td>
+      <td>{{book.isbn}}</td>
+      <td>{{book.num_of_copies}}</td>
+   </tr>
+{% endfor %}
+</table>
+
+{% endblock content %}

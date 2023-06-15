@@ -1,7 +1,7 @@
 from ..forms import LibrarianForm, BookForm, MemberForm, BookIssueForm, TransactionForm
 from django.shortcuts import render, redirect
 from django.views import View
-from django.contrib.auth.decorators import login_required
+
 
 
 class FormView(View):
@@ -14,7 +14,10 @@ class FormView(View):
         return render(request, self.template_name, {'form': form})
 
     def post(self, request, *args, **kwargs):
+  
+        print(request.POST)
         form = self.form_class(request.POST)
+
         if form.is_valid():
             form.save()
             return redirect(self.success_url)

@@ -22,7 +22,7 @@ class Member(models.Model):
         ('Inactive', 'Inactive'),
     ]
 
-    member_id = models.AutoField(primary_key=True, default=0)
+    member_id = models.IntegerField(primary_key=True)
     name = models.CharField(max_length=255)
     phone = models.BigIntegerField()
     membership_status = models.CharField(max_length=10, choices=MEMBERSHIP_STATUS_CHOICES)
@@ -47,7 +47,7 @@ class Transaction(models.Model):
         if book.title not in member.books_issued:
             if member.books_issued:
                 member.books_issued += ', '
-            member.books_issued += book
+            member.books_issued += book.title
             member.save()
 
             # decreasing the number of copies by one
