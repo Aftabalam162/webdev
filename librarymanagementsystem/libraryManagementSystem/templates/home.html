@@ -2,36 +2,82 @@
 
 {% block content %} 
 
-{% if user.is_authenticated %}
-Hi {{ user.username }}! What would you like to do...
+   {% if user.is_authenticated %}
 
-<table class="table table-striped table-hover">
-    <tr><thead>
-       <td>TransactionID</td>
-       <td>ISBN</td>
-       <td>MemberID</td>
-       <td>ISBN</td>
-       <td>Issue</td>
-       <td>Due</td>
-    </tr></thead>
-    <tbody>
- {% for transaction in transactions %}
-    <tr>
-       <td>{{transaction.transaction_id}}</td>
-       <td>{{transaction.isbn}}</td>
-       <td>{{transaction.memberId}}</td>
-       <td>{{transaction.issuedDate}}</td>
-       <td>{{transaction.dueDate}}</td>
-    </tr>
- {% endfor %}
-    </tbody>
- </table>
+      <h3 class="main-heading">Home</h3>
+
+      <p class="mobile-part"> Library Management System with options to issue, register, update, remove books, members, explore catalogue.</p>
+
+      <div class="fillers">
+         As a library member, you have a variety of options to explore today. Whether you want to find a new book to read, update your account information, or manage your current book list, we've got you covered. You can issue a book, register a new book, update or remove book details, add a new member, change member details or remove a member from the library. We are dedicated to providing you with the best possible library experience, so please don't hesitate to reach out if you have any questions or concerns.
+      </div>
 
 
-{% else %}
-<p>You are not logged in</p>
-<a href="{% url 'login' %}">Log In</a>
-{% endif %}
+      <h5>Recent book issues (Last 5): </h5>
+      <div class="table-container">
+         <table class="table table-striped table-hover">
+             <tr><thead>
+                <td>TransactionID</td>
+                <td>ISBN</td>
+                <td>MemberID</td>
+                <td>Issue</td>
+                <td>Due</td>
+             </tr></thead>
+             <tbody> 
+          {% for transaction in page_obj %}
+             <tr>
+                <td>{{transaction.transaction_id}}</td>
+                <td>{{transaction.isbn}}</td>
+                <td>{{transaction.memberId}}</td>
+                <td>{{transaction.issuedDate}}</td>
+                <td>{{transaction.dueDate}}</td>
+             </tr>
+          {% endfor %}
+             </tbody>
+          </table>
+
+      </div>
+
+   {% else %}
+   <h3 class="main-heading">Home</h3>
+
+   <p class="mobile-part"> Hey visitor, please login to unlock the full experience of the software. </p>
+
+   <div class="fillers">
+
+      <h5>Hey visitor, please login to unlock the full experience of the software. </h5><br>
+
+      As a library member, you have a variety of options to explore today. Whether you want to find a new book to read, update your account information, or manage your current book list, we've got you covered. You can issue a book, register a new book, update or remove book details, add a new member, change member details or remove a member from the library. We are dedicated to providing you with the best possible library experience, so please don't hesitate to reach out if you have any questions or concerns.
+   </div>
+
+
+   <h5>Recent book issues (Last 5): </h5>
+   <div class="table-container">
+      <table class="table table-striped table-hover">
+          <tr><thead>
+             <td>TransactionID</td>
+             <td>ISBN</td>
+             <td>MemberID</td>
+             <td>ISBN</td>
+             <td>Issue</td>
+             <td>Due</td>
+          </tr></thead>
+          <tbody>
+       {% for transaction in page_obj %}
+          <tr>
+             <td>XXXXXXXXX</td>
+             <td>XXXXXXXXX</td>
+             <td>XXXXXXXXX</td>
+             <td>XXXXXXXXX</td>
+             <td>XXXXXXXXX</td>
+             
+          </tr>
+       {% endfor %}
+          </tbody>
+       </table>
+
+   </div>
+   {% endif %}
 
 {% endblock content %}
 

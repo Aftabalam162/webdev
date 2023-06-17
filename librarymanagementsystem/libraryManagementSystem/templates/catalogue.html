@@ -1,25 +1,69 @@
 {% extends 'base.html' %}
 
-
 {% block content %}
+{% if user.is_authenticated %}
 
-<table class="table table-striped table-hover">
-   <tr><thead>
-      <td>Title</td>
-      <td>Author</td>
-      <td>Publisher</td>
-      <td>ISBN</td>
-      <td>Copies</td>
-   </thead></tr>
-{% for book in books %}
-   <tr>
-      <td>{{book.title}}</td>
-      <td>{{book.author}}</td>
-      <td>{{book.publisher}}</td>
-      <td>{{book.isbn}}</td>
-      <td>{{book.num_of_copies}}</td>
-   </tr>
-{% endfor %}
-</table>
+<h3 class="main-heading">Catalogue</h3>
+
+<p class="mobile-part"> List of books with title, author, publisher, ISBN, year, and category. Use title and ISBN to issue a book</p>
+
+<div class="fillers">
+   Our library offers a wide range of books for our members to explore. Here, you can find a list of all the books currently available in our collection. We display the book title, author name, publisher name, ISBN, publication year, and category information. If you find a book that interests you, please use the book title and ISBN to issue the book
+</div>
+
+
+      <div class="table-container">
+         <table class="table table-striped table-hover">
+            <tr><thead>
+               <td>Title</td>
+               <td>Author</td>
+               <td>Publisher</td>
+               <td>ISBN</td>
+               <td>Copies</td>
+            </thead></tr>
+            {% for book in page_obj %}
+               <tr>
+                  <td>{{book.title}}</td>
+                  <td>{{book.author}}</td>
+                  <td>{{book.publisher}}</td>
+                  <td>{{book.isbn}}</td>
+                  <td>{{book.num_of_copies}}</td>
+               </tr>
+            {% endfor %}
+
+         </table>
+      </div>
+       <!-- display the object here -->
+  
+
+         <!-- display pagination links -->
+   <div class="pagination">
+       <span class="step-links">
+           {% if page_obj.has_previous %}
+               <a href="?page=1">&laquo; first</a>
+               <a href="?page={{ page_obj.previous_page_number }}">previous</a>
+           {% endif %}
+
+           <span class="current-page">
+               Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+           </span>
+
+           {% if page_obj.has_next %}
+               <a href="?page={{ page_obj.next_page_number }}">next</a>
+               <a href="?page={{ page_obj.paginator.num_pages }}">last &raquo;</a>
+           {% endif %}
+       </span>
+   </div>
+
+{% else %}
+<div class="login-suggest">
+   <p>You are not logged in</p>
+   <a href="{% url 'login' %}">Login</a>
+
+</div>
+{% endif %}
+   
+
 
 {% endblock content %}
+

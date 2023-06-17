@@ -1,11 +1,46 @@
 {% extends "base.html" %}
 
 {% block content %}
+{% if user.is_authenticated %}
+
+<h3 class="main-heading">Add Book</h3>
+
+<p class="mobile-part">Register book with title, author, publisher, ISBN, year, category. Reviewed by team.</p>
+
+<div class="fillers">
+    If you have a new book that you would like to add to our library collection, please register it using the form provided. We require the book title, author name, publisher name, ISBN, publication year, and category information to be filled in accurately. Once you have filled in the required information, click the submit button to register the book. Your registration request will be reviewed by our team, and we will notify you once the book has been added to our collection.
+</div>
 
 <form method="post">
+    <div class="form-container">
+
     {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit">Register Book</button>
+
+    {% for field in form %}
+    <div class="form-group">
+        {{ field.label_tag }}
+        {{ field }}
+        {% if field.errors %}
+            <div class="errorlist">
+                {% for error in field.errors %}
+                    <div>{{ error }}</div>
+                {% endfor %}
+            </div>
+        {% endif %}
+    </div>
+    {% endfor %}
+
+    <button class="btn btn-success" type="submit">Add Book</button>
+</div>
 </form>
 
+{% else %}
+
+<div class="login-suggest">
+    <p>You are not logged in</p>
+    <a href="{% url 'login' %}">Login</a>
+
+</div>
+
+{% endif %}
 {% endblock content %}

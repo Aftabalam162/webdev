@@ -1,11 +1,28 @@
 {% extends "base.html" %}
 
-
 {% block content %}
 
-<form method="post">{% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit">Log In</button>
+<form method="post">
+    <div class="form-container">
+
+    {% csrf_token %}
+
+    {% for field in form %}
+    <div class="form-group">
+        {{ field.label_tag }}
+        {{ field }}
+        {% if field.errors %}
+            <div class="errorlist">
+                {% for error in field.errors %}
+                    <div>{{ error }}</div>
+                {% endfor %}
+            </div>
+        {% endif %}
+    </div>
+    {% endfor %}
+
+    <button class="btn btn-primary" type="submit">Login</button>
+</div>
 </form>
 
-{% endblock content%}
+{% endblock content %}

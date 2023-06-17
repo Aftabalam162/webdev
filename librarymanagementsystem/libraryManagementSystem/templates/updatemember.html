@@ -1,11 +1,91 @@
 {% extends "base.html" %}
 
 {% block content %}
+{% if user.is_authenticated %}
+
+<h3 class="main-heading">Update Member: </h3>
+
+<p class="mobile-part"> Update or remove member using member ID. Provide accurate information and a reason for removal.</p>
+
+<div class="fillers">
+    If you need to update or remove a member from our library, please use the form provided. Enter the member ID in the field provided, and click the update or remove button as needed. If you are updating the member details, please ensure that all the information you provide is accurate and up-to-date. If you are removing the member from our library, please provide a reason for the removal so that we can improve our services.
+</div>
 
 <form method="post">
+    <div class="form-container">
+
     {% csrf_token %}
-    {{ form }}
-    <button type="submit">Update Member</button>
+
+    {% for field in form %}
+    <div class="form-group">
+        {{ field.label_tag }}
+        {{ field }}
+        {% if field.errors %}
+            <div class="errorlist">
+                {% for error in field.errors %}
+                    <div>{{ error }}</div>
+                {% endfor %}
+            </div>
+        {% endif %}
+    </div>
+    {% endfor %}
+
+
+        <button class="btn btn-success" type="submit" formaction="{% url 'updateMember' %}">Update Member</button>
+        <button class="btn btn-danger" type="submit" formaction="{% url 'removeMember' %}">Delete Member</button>
+
+
+</div>
 </form>
+
+<div class="accordion fillers" id="accordionExample">
+    <div class="accordion-item">
+      <h2 class="accordion-header">
+        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+          Accordion Item #1
+        </button>
+      </h2>
+      <div id="collapseOne" class="accordion-collapse collapse show" data-bs-parent="#accordionExample">
+        <div class="accordion-body">
+          <strong>This is the first item's accordion body.</strong> It is shown by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
+        </div>
+      </div>
+    </div>
+    <div class="accordion-item">
+      <h2 class="accordion-header">
+        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+          Accordion Item #2
+        </button>
+      </h2>
+      <div id="collapseTwo" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+        <div class="accordion-body">
+          <strong>This is the second item's accordion body.</strong> It is hidden by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
+        </div>
+      </div>
+    </div>
+    <div class="accordion-item">
+      <h2 class="accordion-header">
+        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+          Accordion Item #3
+        </button>
+      </h2>
+      <div id="collapseThree" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+        <div class="accordion-body">
+          <strong>This is the third item's accordion body.</strong> It is hidden by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+{% else %}
+<div class="login-suggest">
+  <p>You are not logged in</p>
+  <a href="{% url 'login' %}">Login</a>
+
+</div>
+{% endif %}
+
 
 {% endblock content %}

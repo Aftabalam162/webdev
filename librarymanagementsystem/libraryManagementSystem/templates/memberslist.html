@@ -3,10 +3,68 @@
 
 {% block content %}
 
+{% if user.is_authenticated %}
+<h3 class="main-heading">List of Members:</h3>
 
-{% for member in members%}
-   <li>{{ member.name }}</li>
-{% endfor %}
+<p class="mobile-part">Displays member's ID, name, contact, membership status and books issued to them.</p>
+
+<div class="fillers">
+   Here, you can find a list of all the members currently enrolled in our library. We value the privacy of our members, so we only display their member ID, full name, address, phone number, and email address. If you need to contact a member, please use the contact information provided to reach out to them directly.
+</div> 
+
+      <div class="table-container">
+         <table class="table table-striped table-hover">
+            <tr><thead>
+               <td>MemberID</td>
+               <td>Name</td>
+               <td>Contact</td>
+               <td>Status</td>
+               <td>Books Issued</td>
+               <td>Fine Accrue</td>
+            </thead></tr>
+            {% for book in page_obj %}
+               <tr>
+                  <td>{{book.member_id}}</td>
+                  <td>{{book.name}}</td>
+                  <td>{{book.phone}}</td>
+                  <td>{{book.membership_status}}</td>
+                  <td>{{book.books_issued}}</td>
+                  <td>{{book.fine_amount}}</td>
+               </tr>
+            {% endfor %}
+         </table>
+      </div>
+       <!-- display the object here -->
+
+
+         <!-- display pagination links -->
+   <div class="pagination">
+       <span class="step-links">
+           {% if page_obj.has_previous %}
+               <a href="?page=1">&laquo; first</a>
+               <a href="?page={{ page_obj.previous_page_number }}">previous</a>
+           {% endif %}
+
+           <span class="current-page">
+               Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+           </span>
+
+           {% if page_obj.has_next %}
+               <a href="?page={{ page_obj.next_page_number }}">next</a>
+               <a href="?page={{ page_obj.paginator.num_pages }}">last &raquo;</a>
+           {% endif %}
+       </span>
+   </div>
+
+{% else %}
+<div class="login-suggest">
+   <p>You are not logged in</p>
+   <a href="{% url 'login' %}">Login</a>
+
+</div>
+{% endif %}
 
 
 {% endblock content %}
+
+

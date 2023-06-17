@@ -1,10 +1,10 @@
 from django.urls import path
 from .views.views import Book, Member, BookIssue, Transaction
-from .views.customViews import Success, UpdateBook, UpdateBookIssue, UpdateMember, UpdateTransaction, RemoveBook, RemoveMember, IssueBook, ListMember, ListBook
+from .views.customViews import Success, UpdateBook, UpdateBookIssue, UpdateMember, UpdateTransaction, RemoveBook, RemoveMember, IssueBook, ListMember, ListBook, ListTransaction
 
 
 urlpatterns = [
-    path("", Success.as_view(), name="Index"),
+    path("", ListTransaction.as_view(), name="Index"),
     path("addbook/", Book.as_view(), name="addBook"),
     path("addmember/", Member.as_view(), name="addMember"),
     path("addreturnentry/", BookIssue.as_view(), name="addReturnEntry"),

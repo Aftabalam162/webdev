@@ -1,11 +1,46 @@
 {% extends "base.html" %}
 
 {% block content %}
+{% if user.is_authenticated %}
+
+<h3 class="main-heading">Issue Book</h3>
+
+<p class="mobile-part">Enter title, member ID, issue date to issue a book; availability and issue date recorded in the system. </p>
+
+<div class="fillers">
+    To issue a book, please enter the book title, member ID, and issue date in the fields provided. Once you have entered all the required information, click the submit button to complete the process. If the book is available, it will be issued to the member and the issue date will be recorded in our system. If the book is not available, we will notify you as soon as it becomes available.
+</div>
 
 <form method="post">
+    <div class="form-container">
+
     {% csrf_token %}
-    {{ form }}
-    <button type="submit">Add Transaction</button>
+
+    {% for field in form %}
+    <div class="form-group">
+        {{ field.label_tag }}
+        {{ field }}
+        {% if field.errors %}
+            <div class="errorlist">
+                {% for error in field.errors %}
+                    <div>{{ error }}</div>
+                {% endfor %}
+            </div>
+        {% endif %}
+    </div>
+    {% endfor %}
+
+    <button class="btn btn-primary" type="submit">Add Entry</button>
+</div>
 </form>
+
+{% else %}
+<div class="login-suggest">
+    <p>You are not logged in</p>
+    <a href="{% url 'login' %}">Login</a>
+
+</div>
+{% endif %}
+
 
 {% endblock content %}

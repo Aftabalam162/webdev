@@ -1,10 +1,11 @@
 from django.http import Http404, HttpResponseRedirect
 from django.shortcuts import render, get_object_or_404
 from django.urls import reverse
-from ..forms import BookForm, MemberForm, BookIssueForm, TransactionForm, RemoveBookForm, RemoveMemberForm
+from ..forms import BookForm, MemberForm, BookIssueForm, TransactionForm
 from .views import FormView
 from ..models import Book, BookIssue, Member, Transaction
 from django.contrib import messages
+from django.core.paginator import Paginator
 
 class Success(FormView):
     template_name = "home.html"
@@ -93,21 +94,26 @@ class RemoveFormView(UpdateFormView):
         uniqueId = self.identifier
 
         primarykey_value = request.POST.get(uniqueId)
-
-        my_instance = get_object_or_404(self.model, **{self.identifier: primarykey_value})
+        
+        try:
+            my_instance = get_object_or_404(self.model, **{self.identifier: primarykey_value})
+        except Http404:
+        # Object not found, handle the error here
+            messages.error(request, "Object with primary key not found")
+            return render(request, self.template_name, {"form": self.form_class()})        
 
         my_instance.delete()
             
         return HttpResponseRedirect(reverse("Index"))
 
 class RemoveBook(RemoveFormView):
-    form_class = RemoveBookForm
+    form_class = BookForm
     template_name = "deletebook.html"
     model = Book
     identifier = "isbn"
 
 class RemoveMember(RemoveFormView):
-    form_class = RemoveMemberForm
+    form_class = MemberForm
     template_name = "deletemember.html"
     model = Member
     identifier = "member_id"
@@ -119,19 +125,53 @@ class IssueBook(FormView):
 
 
 class ListMember(FormView):
-    members = Member.objects.all()
+    
+
+    items_per_page = 10
+
+    
+
     template_name = "memberslist.html"
+
     def get(self, request, *args, **kwargs):
-        return render(request, self.template_name, {"members": self.members})
+        members = Member.objects.all()
+
+        # Create a Paginator object
+        paginator = Paginator(members, self.items_per_page)
+
+        # Get the current page number from the request's GET parameters
+        current_page = request.GET.get('page')
+
+        # Get the Page object for the current page
+        page_obj = paginator.get_page(current_page)        
+        
+        return render(request, self.template_name, {"page_obj": page_obj})
 
 class ListBook(FormView):
-    books = Book.objects.all()
+    items_per_page = 10
+
     template_name = "catalogue.html"
+
     def get(self, request, *args, **kwargs):
-        return render(request, self.template_name, {"books": self.books})
+        books = Book.objects.all()
+
+        # Create a Paginator object
+        paginator = Paginator(books, self.items_per_page)
+
+        # Get the current page number from the request's GET parameters
+        current_page = request.GET.get('page')
+
+        # Get the Page object for the current page
+        page_obj = paginator.get_page(current_page)
+
+        return render(request, self.template_name, {'page_obj': page_obj})
 
 class ListTransaction(FormView):
-    transactions = Transaction.objects.order_by('-created_at')[:5]
+
     template_name = "home.html"
     def get(self, request, *args, **kwargs):
-        return render(request, self.template_name, {"transactions": self.transactions})
+
+        transactions = Transaction.objects.order_by('-transaction_id')[:5]
+
+
+        return render(request, self.template_name, {"page_obj": transactions})

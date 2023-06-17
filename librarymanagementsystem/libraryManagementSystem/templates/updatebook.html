@@ -2,10 +2,50 @@
 
 {% block content %}
 
-<form method="post">
+{% if user.is_authenticated %}
+<h3 class="main-heading">Update Book Details</h3>
+
+<p class="mobile-part">Update or remove member using member ID. Provide accurate information and a reason for removal</p>
+
+<div class="fillers">
+    If you need to update or remove a book from our library collection, please use the form provided. Enter the book title and ISBN in the fields provided, and click the update or remove button as needed. If you are updating the book details, please ensure that all the information you provide is accurate and up-to-date. If you are removing the book from our collection, please provide a reason for the removal so that we can improve our services.
+</div>
+
+<form method="post" id="my-form" action="#">
+    <div class="form-container">
+    <input type="hidden" name="form-action" id="form-action" value="" />
     {% csrf_token %}
-    {{ form }}
-    <button type="submit">Update Book</button>
+
+    {% for field in form %}
+    <div class="form-group">
+        {{ field.label_tag }}
+        {{ field }}
+        {% if field.errors %}
+            <div class="errorlist">
+                {% for error in field.errors %}
+                    <div>{{ error }}</div>
+                {% endfor %}
+            </div>
+        {% endif %}
+    </div>
+    {% endfor %}
+
+
+        <button class="btn btn-success" type="submit" formaction="{% url 'updateBook' %}">Update Book</button>
+        <button class="btn btn-danger" type="submit" formaction="{% url 'removeBook' %}">Delete Book</button>
+
+
+
+</div>
 </form>
+
+{% else %}
+<div class="login-suggest">
+    <p>You are not logged in</p>
+    <a href="{% url 'login' %}">Login</a>
+
+</div>
+{% endif %}
+
 
 {% endblock content %}
