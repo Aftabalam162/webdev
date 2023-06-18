@@ -19,4 +19,4 @@ urlpatterns = [
     path("issuebook/", IssueBook.as_view(), name="issueBook"),
     path("listmember/", ListMember.as_view(), name="listMember"),
     path("catalogue/", ListBook.as_view(), name="listBooks")
-]
+] 

@@ -2,6 +2,15 @@
 
 {% block content %}
 {% if user.is_authenticated %}
+
+<h3 class="main-heading">Return Book</h3>
+
+<p class="mobile-part">The page provides a view for adding return entries in a library management system, handling form submissions, updating book copies, and managing member records. </p>
+
+<div class="fillers">
+This page enables the addition of return entries in a library management system. It manages form submissions, updates book copies, and maintains member records, streamlining library operations and ensuring accurate record-keeping for efficient management of library resources and member transactions.
+</div>
+
 <form method="post">
     <div class="form-container">
 
@@ -21,7 +30,7 @@
     </div>
     {% endfor %}
 
-    <button class="btn btn-primary" type="submit">Add Entry</button>
+    <button class="btn btn-success" type="submit">Add Entry</button>
 </div>
 </form>
 

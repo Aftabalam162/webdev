@@ -20,24 +20,25 @@
                 <td>TransactionID</td>
                 <td>ISBN</td>
                 <td>MemberID</td>
-                <td>Issue</td>
-                <td>Due</td>
+                <td>Issue Date</td>
+                <td>Due Date</td>
+                <td>Returned Date</td>
              </tr></thead>
              <tbody> 
-          {% for transaction in page_obj %}
+          {% for transaction in page_obj1 %}
              <tr>
                 <td>{{transaction.transaction_id}}</td>
-                <td>{{transaction.isbn}}</td>
-                <td>{{transaction.memberId}}</td>
+                <td>{{transaction.isbn.isbn}}</td>
+                <td>{{transaction.memberId.member_id}}</td>
                 <td>{{transaction.issuedDate}}</td>
                 <td>{{transaction.dueDate}}</td>
+                <td>{{transaction.returnedDate}}</td>
              </tr>
           {% endfor %}
              </tbody>
           </table>
 
       </div>
-
    {% else %}
    <h3 class="main-heading">Home</h3>
 
@@ -47,7 +48,7 @@
 
       <h5>Hey visitor, please login to unlock the full experience of the software. </h5><br>
 
-      As a library member, you have a variety of options to explore today. Whether you want to find a new book to read, update your account information, or manage your current book list, we've got you covered. You can issue a book, register a new book, update or remove book details, add a new member, change member details or remove a member from the library. We are dedicated to providing you with the best possible library experience, so please don't hesitate to reach out if you have any questions or concerns.
+      As a librarian, you have a variety of options to explore today. Whether you want to find a new book, update someone account information, or manage the book list, we've got you covered. You can issue a book, register a new book, update or remove book details, add a new member, change member details or remove a member from the library. We are dedicated to providing you with the best possible library experience, so please don't hesitate to reach out if you have any questions or concerns.
    </div>
 
 
@@ -63,7 +64,7 @@
              <td>Due</td>
           </tr></thead>
           <tbody>
-       {% for transaction in page_obj %}
+       {% for transaction in page_obj1 %}
           <tr>
              <td>XXXXXXXXX</td>
              <td>XXXXXXXXX</td>

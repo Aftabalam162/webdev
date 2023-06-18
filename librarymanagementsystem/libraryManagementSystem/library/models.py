@@ -1,5 +1,6 @@
 from django.contrib.auth.models import AbstractBaseUser, BaseUserManager, PermissionsMixin
 from django.db import models
+from django.contrib import messages
 
 # Create your models here.
 
@@ -59,60 +60,130 @@ class Member(models.Model):
     books_issued = models.CharField(max_length=255, blank=True)
     fine_amount = models.IntegerField(blank=True, default=0, null=True)
 
+# class Transaction(models.Model):
+#     transaction_id = models.AutoField(primary_key=True, default=0)
+#     isbn = models.ForeignKey(Book, on_delete=models.CASCADE)
+#     memberId = models.ForeignKey(Member, on_delete=models.CASCADE)
+#     issuedDate = models.DateField()
+#     dueDate = models.DateField()
+#     returnedDate = models.DateField(null=True, blank=True)
+
+#     def save(self, *args, **kwargs):
+#         # Call the parent's save() method
+#         super().save(*args, **kwargs)
+
+#         # Update the member's books_issued field
+#         member = self.memberId
+#         book = self.isbn
+#         book_issued = member.books_issued.split(', ')
+
+
+
+#         if member.books_issued == book.title:
+#             raise ValueError('Cannot issue a book twice to a member!')
+#         if book.title in book_issued:
+#             raise ValueError('Cannot issue a book twice to a member!')
+#         if member.books_issued:
+#             member.books_issued += ', '
+#         member.books_issued += book.title
+#         member.save()
+#         # decreasing the number of copies by one
+#         book.num_of_copies -= 1
+#         book.save()
+
+
 class Transaction(models.Model):
-    transaction_id = models.AutoField(primary_key=True, default=0)
+    transaction_id = models.AutoField(primary_key=True)
     isbn = models.ForeignKey(Book, on_delete=models.CASCADE)
     memberId = models.ForeignKey(Member, on_delete=models.CASCADE)
     issuedDate = models.DateField()
     dueDate = models.DateField()
+    returnedDate = models.DateField(null=True, blank=True)
 
     def save(self, *args, **kwargs):
-        # Call the parent's save() method
-        super().save(*args, **kwargs)
+        # Check if the transaction is being created for the first time
+        if self.transaction_id is None:
+            # Update the member's books_issued field only when creating a new transaction
+            member = self.memberId
+            book = self.isbn
+            book_issued = member.books_issued.split(', ')
 
-        # Update the member's books_issued field
-        member = self.memberId
-        book = self.isbn
+            print("Member:", member, ", Book", book)
 
-        if book.title not in member.books_issued:
+            if member.books_issued == book.title:
+                raise ValueError('Cannot issue a book twice to a member!')
+            if book.title in book_issued:
+                raise ValueError('Cannot issue a book twice to a member!')
             if member.books_issued:
                 member.books_issued += ', '
             member.books_issued += book.title
             member.save()
-
-            # decreasing the number of copies by one
+            # Decrease the number of copies by one
             book.num_of_copies -= 1
             book.save()
 
-# @receiver(post_save, sender=Transaction)
-# def update_books_issued(sender, instance, **kwargs):
-#     member = instance.memberId
-#     book = instance.isbn.title
-#     if book not in member.books_issued:
-#         if member.books_issued:
-#             member.books_issued += ', '
-#         member.books_issued += book
-#         member.save()
+        super().save()
 
+
+ 
 
 class BookIssue(models.Model):
-    bookreturn_id = models.AutoField(primary_key=True, default=0)
+    # book returning model form
+
+    bookreturn_id = models.AutoField(primary_key=True)
     isbn = models.ForeignKey(Book, on_delete=models.CASCADE)
     member_id = models.ForeignKey(Member, on_delete=models.CASCADE)
     returned_date = models.DateField()
-    comments = models.CharField(max_length=255)
+    comments = models.CharField(max_length=255, blank=True)
     fine_charged = models.DecimalField(max_digits=10, decimal_places=2, default=0.00, null=True)
+    transaction_id = models.ForeignKey(Transaction, on_delete=models.CASCADE)
 
     def save(self, *args, **krwargs):
         
-        super().save()
-
-        member = self.member_id
         bookReturnEntry = self
+        book = self.isbn
+        member = self.member_id
+        transaction = self.transaction_id
+
+        # updating the datefield of the transaction entry
+        transaction.returnedDate = bookReturnEntry.returned_date
+        transaction.save()
+ 
+        books_issued_list = member.books_issued.split(', ')
+        # if it returns none then either no book is issued to the member
+        # or a single boook is issued
+        if transaction.memberId == self.member_id:
+            if transaction.isbn == self.isbn:
+                if book.title in books_issued_list:
+                    books_issued_list.remove(book.title)
+                    member.books_issued = ', '.join(books_issued_list)
+
+                elif book.title == member.books_issued:
+                    member.books_issued = ''
+
+                    # remove the book title from member's books_issued field
+                else:
+                    raise ValueError('No Book is issued to the member')
+            else:
+                raise ValueError('ISBN entered is incorrect!')
+        else:
+            raise ValueError('MemberID is incorrect')     
 
         if bookReturnEntry.fine_charged:
-            member.fine_amount += bookReturnEntry.fine_charged
-            member.save()
+            member.fine_amount += int(bookReturnEntry.fine_charged)
+
+        # charge members fine amount if any
+      
+        book.num_of_copies += 1
+
+        # increase the copies available by one
+
+
+        book.save()
+        member.save()
+
+        super().save()
+        
         
         
         

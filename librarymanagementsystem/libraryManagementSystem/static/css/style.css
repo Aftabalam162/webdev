@@ -1,6 +1,3 @@
-:root {
-  --bs-toast-bg: rgb(255, 226, 226); }
-
 * {
   box-sizing: border-box; }
 
@@ -41,7 +38,12 @@ body {
       vertical-align: middle; }
   .main .toast-bg-color {
     position: absolute;
-    background-color: #ffe2e2 !important; }
+    left: 50%;
+    transform: translateX(-50%); }
+    .main .toast-bg-color.success {
+      background-color: #e5ffe2 !important; }
+    .main .toast-bg-color.danger {
+      background-color: #ffe2e2 !important; }
   .main .pagination {
     justify-content: center; }
   .main .fillers {
@@ -77,6 +79,10 @@ body {
     .main .toast-bg-color {
       position: absolute;
       background-color: #ffe2e2 !important; }
+      .main .toast-bg-color.success {
+        background-color: #e5ffe2 !important; }
+      .main .toast-bg-color.danger {
+        background-color: #ffe2e2 !important; }
     .main .fillers {
       display: block;
       padding: auto 3rem;

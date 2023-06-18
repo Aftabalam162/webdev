@@ -24,6 +24,8 @@ class UpdateFormView(FormView):
     # name of the object class of which instance I need ex. Book
     identifier = None
     # identifier of the instance ex. ISBN
+    successtext = None
+    # what toast to present if action is performed successfully
    
 
     def post(self, request, *args, **kwargs):
@@ -56,26 +58,30 @@ class UpdateFormView(FormView):
             # clean() and clean_<field_name>() or any other validation return true (forms.py)
     
             form.save()
-            return HttpResponseRedirect(reverse("Index"))
+            messages.success(request, self.successtext, extra_tags='success')
+            return HttpResponseRedirect(reverse(self.template_name))
         return render(request, self.template_name, {"form": form})
-        
+         
 class UpdateBook(UpdateFormView):
     form_class = BookForm
     template_name = "updatebook.html"
     model = Book
     identifier = "isbn"
+    successtext = "Book details are updated successfully!"
 
 class UpdateMember(UpdateFormView):
     form_class = MemberForm
     template_name = "updatemember.html"
     model = Member
     identifier = "member_id"
+    successtext = "Member details are updated successfully!"
 
 class UpdateBookIssue(UpdateFormView):
     form_class = BookIssueForm
     template_name = "updatebookissue.html"
     model = BookIssue
     identifier = "bookreturn_id"
+    successtext = "Member details are updated successfully!"
 
 class UpdateTransaction(UpdateFormView):
     form_class = TransactionForm
@@ -83,11 +89,13 @@ class UpdateTransaction(UpdateFormView):
     model = Transaction
     identifier = "transaction_id"
 
+
 class RemoveFormView(UpdateFormView):
     form_class = None
     template_name = None
     model = None
     identifier = None
+    successtext = None
 
     def post(self, request, *args, **kwargs):
 
@@ -103,33 +111,35 @@ class RemoveFormView(UpdateFormView):
             return render(request, self.template_name, {"form": self.form_class()})        
 
         my_instance.delete()
-            
-        return HttpResponseRedirect(reverse("Index"))
+        messages.success(request, self.successtext, extra_tags='success')    
+        return HttpResponseRedirect(reverse(self.template_name))
 
 class RemoveBook(RemoveFormView):
     form_class = BookForm
     template_name = "deletebook.html"
     model = Book
     identifier = "isbn"
+    successtext = "Book is removed successfully!"
+    
 
 class RemoveMember(RemoveFormView):
     form_class = MemberForm
     template_name = "deletemember.html"
     model = Member
     identifier = "member_id"
+    successtext = "Member is removed successfully!"
 
 
 class IssueBook(FormView):
     form_class = TransactionForm
     template_name = "issuebook.html"
+    successtext = "Book has been issued successfully!"
+    returnURl = 'issueBook'
 
 
 class ListMember(FormView):
     
-
     items_per_page = 10
-
-    
 
     template_name = "memberslist.html"
 
@@ -173,5 +183,5 @@ class ListTransaction(FormView):
 
         transactions = Transaction.objects.order_by('-transaction_id')[:5]
 
+        return render(request, self.template_name, {"page_obj1": transactions})
 
-        return render(request, self.template_name, {"page_obj": transactions})
