@@ -5,9 +5,9 @@ export function Footer() {
             <div className="footer">
                 <div className="footer-links_container">
                     <ul className="footer-links_list">
-                        <li>Home</li>
-                        <li>Contact</li>
-                        <li>Feedback</li>
+                        <li><a href="/">Home</a></li>
+                        <li><a href="#">Contact</a></li>
+                        <li><a href="#">Feedback</a></li>
                     </ul>
                 </div>
                 <h5> Made with love by Aftab :D</h5>

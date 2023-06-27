@@ -3,12 +3,24 @@ import { useState } from "react";
 export default function Product() {
 
 
-    const [selectedButton, setSelectedButton] = useState(null);
+    const [selectedButton, setSelectedButton] = useState('small');
+    const [zoomedImage, setZoomedImage] = useState('banner1.png')
+    const [productQuantity, setProductQuantity] = useState(0)
+
+    function handleButtonClick(event) {
     
-    function handleButtonClick(button) {
-      setSelectedButton(button);
+        setSelectedButton(event.target.value);
     }
-      
+
+    function handleQuantityChange(event) {
+
+        setProductQuantity(event.target.value)
+    }
+
+    function handleImageZoomClick(event) {
+
+        setZoomedImage(event.target.src.replace('http://localhost:5173/', ''))
+    }
   
     return (
         <>
@@ -16,14 +28,14 @@ export default function Product() {
 
                 <div className="product-showcase">
                 <div className="product-images">
-                    <img src="banner1.png" />
-                    <img src="banner2.png" />
-                    <img src="banner3.png" />
+                    <img src="banner1.png" onClick={handleImageZoomClick}/>
+                    <img src="banner2.png" onClick={handleImageZoomClick}/>
+                    <img src="banner3.png" onClick={handleImageZoomClick}/>
                     {/* <img src="" /> */}
                 </div>
                 {/* all the images */}
                 <div className="product-image_zoomin">
-                    <img src="banner1.png" />
+                    <img src={zoomedImage} />
                 </div>
                 {/* main image div */}
                 </div>
@@ -40,14 +52,18 @@ export default function Product() {
 
                         <div className="product-specification">
                             <table>
-                                <tr>
-                                    <td><b>Cloth: </b></td>
-                                    <td>Cotton</td>
-                                </tr>
-                                <tr>
-                                    <td><b>Sizes Available: </b></td>
-                                    <td>S, M, L and XL</td>
-                                </tr>
+                                <thead>
+                                    <tr>
+                                        <td><b>Cloth: </b></td>
+                                        <td>Cotton</td>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td><b>Sizes Available: </b></td>
+                                        <td>S, M, L and XL</td>
+                                    </tr>
+                                </tbody>
                             </table>
                         </div>
 
@@ -57,26 +73,22 @@ export default function Product() {
 
 
                                 <div className="product-size">
-                                    <label htmlFor="type"><b>Type:</b> <b>{selectedButton}</b> </label><br />
-                                    <button className={(selectedButton == 'S')? "active": ""} onClick={() => { handleButtonClick('S')}} type="radio" radioGroup="">S</button>
-                                    <button className={(selectedButton == 'M')? "active": ""} onClick={() => { handleButtonClick('M')}} type="radio" radioGroup="type">M</button>
-                                    <button className={(selectedButton == 'L')? "active": ""} onClick={() => { handleButtonClick('L')}} type="radio" radioGroup="type">L</button>
-                                    <button className={(selectedButton == 'XL')? "active": ""} onClick={() => { handleButtonClick('XL')}} type="radio" radioGroup="type">XL</button>
+                                    <label htmlFor="type"><b>Type:</b> </label><br />
+                                    <input checked={selectedButton === 'small'} onChange={handleButtonClick} type="radio" name="size" value='small'/>S
+                                    <input checked={selectedButton === 'medium'} onChange={handleButtonClick} type="radio" name="size" value='medium'/>M
+                                    <input checked={selectedButton === 'large'} onChange={handleButtonClick} type="radio" name="size" value='large'/>L
+                                    <input checked={selectedButton === 'extraLarge'} onChange={handleButtonClick} type="radio" name="size" value='extraLarge'/>XL
                                 </div>
 
                                 <div className="quantity">
                                     <label htmlFor="quantity">Quantity: </label>
-                                    <select name="quantity">
-                                        <option value="1">1</option>
-                                        <option value="2">2</option>
-                                        <option value="3">3</option>
-                                    </select>
+
+                                    <input type="number" name="quantity" id="quantity" min="0" max="3" onChange={handleQuantityChange}/>
                                 </div>
                             </div>
 
                             <div className="purchase-btn">
-                                <button className="buy-btn details_btn"> Buy Now </button>
-                                <button className="add-cart-btn details_btn"> Add to cart </button>
+                                <button className="buy-btn details_btn"> Buy Now {(productQuantity == 0)? '': '($' + productQuantity*15+ ')' } </button>
                             </div>
                         </div>
                     </div>

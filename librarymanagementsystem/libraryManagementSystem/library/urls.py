@@ -1,3 +1,5 @@
+from django.conf import settings
+from django.conf.urls.static import static
 from django.urls import path
 from .views.views import Book, Member, BookIssue, Transaction
 from .views.customViews import Success, UpdateBook, UpdateBookIssue, UpdateMember, UpdateTransaction, RemoveBook, RemoveMember, IssueBook, ListMember, ListBook, ListTransaction
@@ -20,3 +22,4 @@ urlpatterns = [
     path("listmember/", ListMember.as_view(), name="listMember"),
     path("catalogue/", ListBook.as_view(), name="listBooks")
 ] 
+
