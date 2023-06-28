@@ -1,0 +1,242 @@
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    width: 100vw;
+    position: relative;
+}
+
+
+.navbar {
+
+    .container-fluid {
+        width: 100%;
+
+        .container-fluid {
+            width: fit-content;
+            position: relative;
+            flex-wrap: nowrap;
+        }
+    }
+
+    .nav-item {
+        .drop-down {
+            color: black;
+        }
+    }
+}
+
+
+@media screen and (min-width: 769px) {
+
+    .navbar {
+
+        .container-fluid {
+            width: 100%;
+            flex-wrap: nowrap;
+    
+            .container-fluid {
+                width: fit-content;
+                position: relative;
+                
+            }
+    
+            .logout {
+                position: absolute;
+                right: 1rem;
+                border: 1px solid #0044CC;
+                border-radius: 5px;
+                background-color: #0044CC;
+                color: white;
+            }
+        }
+    }    
+}
+
+.main {
+
+    width: 100vw;
+    word-wrap: break-word;
+    padding: 1rem;
+
+    .table-container {
+
+        overflow-y: scroll;
+
+
+        thead {
+            vertical-align: middle;
+        }
+    }
+
+    .toast-bg-color {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+
+        &.success {
+            background-color: rgb(229, 255, 226)!important;
+        }
+        &.danger {
+            background-color: rgb(255, 226, 226)!important;
+        }
+    }
+ 
+    .pagination {
+        justify-content: center;
+    }
+
+    .fillers {
+        display: none;
+    }
+
+
+    .mobile-part {
+        text-align: initial;
+        padding: 1.5rem 1.5rem 0 1.5rem;
+    }
+
+    .login-suggest {
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        height: 100vh;
+        width: 100vw;
+        font-size: 1.5rem;
+
+        > a {
+            border: 1px solid;
+            padding: 0.5rem;
+            width: 10rem;
+            text-align: center;
+            text-decoration: none;
+            border-radius: 5px;
+            background-color: #0044CC;
+            color: white;
+        }
+
+    }
+}
+
+@media screen and (min-width: 769px) {
+    .main {
+        width: 100vw;
+        word-wrap: break-word;
+        padding: 1rem;
+    
+        .table-container {
+            overflow-y: scroll;
+        }
+    
+        .toast-bg-color {
+        position: absolute;
+        background-color: rgb(255, 226, 226)!important;
+
+            &.success {
+                background-color: rgb(229, 255, 226)!important;
+            }
+            &.danger {
+                background-color: rgb(255, 226, 226)!important;
+            }
+
+        }
+    
+        .fillers {
+            display: block;
+            padding: auto 3rem;
+            width: 70%;
+            margin: 1.5rem auto;
+
+        }
+    
+    }
+    
+    
+}
+
+.main {
+
+    >.main-heading {
+        text-align: center;
+        text-decoration: underline;
+    }
+}
+
+
+.form-group {
+
+    margin: 1.5rem;
+
+    label {
+       display: block;
+       margin-bottom: 0.5rem;
+    }
+
+    > select {
+        width: 100%;
+        height: 2rem;
+    }
+
+    > input {
+        width: 100%;
+        height: 2rem;
+    }
+
+}
+
+.form-container {
+
+
+    > button {
+        margin: 1.5rem;
+        float: right;
+        margin-top: 0;
+    }
+    > .btn {
+        &.btn-success {
+            margin-left: 0.5rem;
+        }
+        &.btn-danger {
+            margin-right: 0;
+        }
+
+
+   
+    }
+
+}
+
+@media screen and (min-width: 769px) {
+
+.main {
+
+    >.main-heading {
+        text-align: center;
+    }
+
+    > form {
+        display: flex;
+        justify-content: center;
+        margin: 2rem;
+
+        > .form-container {
+            border: 1px solid black;
+            border-radius: 3px;
+            padding: 2rem;
+            box-shadow: inset 0 0 20px 5px black, 0 0 5px 10px lightblue;
+        }
+    }
+
+    > .mobile-part {
+        display: none;
+    }
+
+    
+
+}
+
+}
